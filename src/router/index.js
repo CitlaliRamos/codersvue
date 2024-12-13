@@ -13,12 +13,12 @@ const routes = [
     component: () => import('../views/courses/CoursesList.vue')
   },
   {
-    path: '/posts/{:id}',
+    path: '/posts/:id',
     name: 'PostDetalls',
     component: () => import('../views/courses/CourseDetalls.vue')
   },
   {
-    path: '/posts/{:id}/edit',
+    path: '/posts/:id/edit',
     name: 'PostEdit',
     component: () => import('../views/courses/CourseEdit.vue')
   },

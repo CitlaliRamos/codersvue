@@ -29,7 +29,7 @@
             <select name="" id="categoria" v-model="post.categoria_id">
                 <!--<option v-for="categoria in categorias" :key="categoria.id" value="{{ categoria.id }}">{{ categoria.nombre }}</option>-->
                 <option value="" selected disabled>Seleccione una categoria</option>
-                <option v-for="categoria in categorias" :key="categoria.id" :value="categoria.id">{{ categoria.nombre }}</option>
+                <option v-for="categoria in categorias" :key="'categoria-'+categoria.id" :value="categoria.id">{{ categoria.nombre }}</option>
             </select>
         </div>
         <br>
@@ -51,7 +51,7 @@ export default {
     },
     methods:{
         getCategorias(){
-            this.axios.get('http://127.0.0.1:8000/api/categorias')
+            this.axios.get('http://api.codersfree.test/api/categorias')
             .then(response =>{
                 this.categorias = response.data.data;
             })
@@ -60,7 +60,7 @@ export default {
             }) 
         },
         getPost(){
-            this.axios.get('http://127.0.0.1:8000/api/posts/'+this.$route.params.id)
+            this.axios.get('http://api.codersfree.test/api/posts/'+this.$route.params.id+'?included=categoria')
             .then(response =>{
                 this.post = response.data.data;                
             })
@@ -70,7 +70,7 @@ export default {
         },
         
         updatePost(){
-            this.axios.put('http://127.0.0.1:8000/api/posts/'+this.$route.params.id,this.post)
+            this.axios.put('http://api.codersfree.test/api/posts/'+this.$route.params.id, this.post)
             .then( () =>{
                 this.$router.push({name:'PostDetalls', params:{id:this.$route.params.id}});
             })

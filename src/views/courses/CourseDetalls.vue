@@ -4,7 +4,7 @@
     <p>{{ post.extracto }}</p>
     <p>{{ post.cuerpo }}</p>
     <p><b>Catgoria: </b>{{ categoria.nombre }}</p>
-    <p><b>Usuario: </b>{{ user.nombre }}</p>
+    <p><b>Usuario: </b>{{ user.name }}</p>
 
     <router-link :to="{name:'PostEdit', params: {id: post.id}}">Editar post</router-link>
 
@@ -23,7 +23,7 @@ export default {
     },
     methods:{
         getPost(){
-            this.axios.get('http://127.0.0.1:8000/api/posts/'+this.$route.params.id+'?included=categoria,user')
+            this.axios.get('http://api.codersfree.test/api/posts/'+this.$route.params.id+'?included=categoria,user')
             .then(response =>{
                 this.post = response.data.data;
                 this.categoria= this.post.categoria;
